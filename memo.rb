@@ -1,0 +1,31 @@
+require 'csv'
+
+input = nil
+
+loop do
+    puts "新しいファイルを作る場合は1、既存のファイルを編集する場合は2を押してください" 
+    input = gets.to_i
+    break if input == 1 || input == 2
+    puts "向こうは値です。1 (新規作成)または、2 (編集)を入力してください"
+end
+
+if input == 1
+    puts "ファイル名を入力してください"
+    file_name = gets.chomp
+    puts "メモしたい内容を入力してください"
+    puts "完了したらEnterを押してください"
+    file_content = gets.chomp
+    CSV.open("#{file_name}.csv", "w") do |csv|
+        csv << [file_content]
+    end
+elsif input == 2
+    puts "ファイル名を入力してください"
+    file_name = gets.chomp
+    puts "メモしたい内容を入力してください"
+    puts "完了したらEnterを押してください"
+    file_content = gets.chomp 
+    CSV.open("#{file_name}.csv", "w") do |csv|
+        csv << [file_content]
+    end
+end
+    
