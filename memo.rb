@@ -13,8 +13,9 @@ if input == 1
     puts "ファイル名を入力してください"
     file_name = gets.chomp
     puts "メモしたい内容を入力してください"
-    puts "完了したらEnterを押してください"
-    file_content = gets.chomp
+    puts "終了: Windowsは Ctrl+Z → Enter / Mac・Linuxは Ctrl+D"
+    file_content = STDIN.read
+    file_content = file_content.gsub("\u001A", "")
     CSV.open("#{file_name}.csv", "w") do |csv|
         csv << [file_content]
     end
@@ -23,7 +24,8 @@ elsif input == 2
     file_name = gets.chomp
     puts "メモしたい内容を入力してください"
     puts "完了したらEnterを押してください"
-    file_content = gets.chomp 
+    file_content = STDIN.read
+    file_content = file_content.gsub("\u001A", "")
     CSV.open("#{file_name}.csv", "a") do |csv|
         csv << [file_content]
     end
